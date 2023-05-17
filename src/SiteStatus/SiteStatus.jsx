@@ -8,9 +8,12 @@ import TabList from "@mui/lab/TabList";
 import SiteStatusRealTimeReport from "./Components/SiteStatusRealTimeReport";
 import SiteStatusDataGraph from "./Components/SiteStatusDataGraph";
 import SiteStatusDataTable from "./Components/SiteStatusDataTable";
+import GetData from "./Components/GetData";
 
 import axios from "axios";
 import Loader from "../Global/Loader/Loader";
+
+
 
 const SiteStatus = () => {
   const [value, setValue] = useState("1");
@@ -18,7 +21,7 @@ const SiteStatus = () => {
   const [siteData, setSiteData] = useState();
   const [parametersData, setParametersData] = useState();
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
     const headers = {
       "Content-Type": "application/json",
@@ -71,11 +74,11 @@ const SiteStatus = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  if (loading) return <Loader />;
+  // if (loading) return <Loader />;
 
   return (
     <div className="sitestatusdata">
-      {siteData?.map((item) => {
+      {/* {siteData?.map((item) => {
         return (
           <>
             <div
@@ -126,7 +129,7 @@ const SiteStatus = () => {
             </div>
           </>
         );
-      })}
+      })} */}
       <div className="sitestatusdata__container">
         <Box sx={{ width: "100%", typography: "body1" }}>
           <TabContext value={value}>
@@ -138,16 +141,20 @@ const SiteStatus = () => {
                 <Tab label="Real Time Report" value="1" />
                 <Tab label="Record view" value="2" />
                 <Tab label="Graph view" value="3" />
+                <Tab label="Get Data" value="4" />
               </TabList>
             </Box>
             <TabPanel value="1" sx={{ backgroundColor: "#a09f9f21" }}>
-              <SiteStatusRealTimeReport parametersData={parametersData} />
+              {/* <SiteStatusRealTimeReport parametersData={parametersData} /> */}
             </TabPanel>
             <TabPanel value="2">
-              <SiteStatusDataTable parametersData={parametersData} />
+              {/* <SiteStatusDataTable parametersData={parametersData} /> */}
             </TabPanel>
             <TabPanel value="3">
-              <SiteStatusDataGraph parametersData={parametersData} />
+              {/* <SiteStatusDataGraph parametersData={parametersData} /> */}
+            </TabPanel>
+            <TabPanel value="4">
+              <GetData />
             </TabPanel>
           </TabContext>
         </Box>
